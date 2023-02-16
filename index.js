@@ -55,6 +55,7 @@ function getYears(arr, callBack) {
    const years = thestuff.map((point)=>{return point.Year});
         return years
 }
+//console.log(getYears(fifaData,getFinals))
 
 //console.log(getYears (fifaData, getFinals))
 
@@ -66,11 +67,26 @@ Use the higher-order function getWinners to do the following:
 💡 HINT: Don't worry about ties for now (Please see the README file for info on ties for a stretch goal.)
 4. Returns the names of all winning countries in an array called `winners` */ 
 
-function getWinners(/* code here */) {
-    /* code here */
+function getWinners(arr, callBack) {
+     const names = []
+   
+    const teams = callBack(arr)
+    const homeWinners = teams.filter((sp)=> sp['Home Team Goals'] > sp['Away Team Goals'])
+    const awayWinners = teams.filter((sp)=> sp['Home Team Goals'] < sp['Away Team Goals'])
+    
+    function sifting(arr, team){
+        for (let i = 0 ; i < arr.length ; i ++){
+        names.push(arr[i][team])
+    }
+}
+    sifting(homeWinners, 'Home Team Name')
+    sifting(awayWinners, 'Away Team Name')
+
+    return names
 }
 
 
+//console.log(getWinners(fifaData,getFinals))
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 5: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 
 Use the higher-order function getWinnersByYear to do the following:
@@ -83,11 +99,25 @@ Use the higher-order function getWinnersByYear to do the following:
 💡 HINT: the strings returned need to exactly match the string in step 4.
  */
 
-function getWinnersByYear(/* code here */) {
-    /* code here */
+// function getWinnersByYear(fifaData, getFinalsCB, getYearsCB, getWinnersCB) {
+//      const Year = getYearsCB(fifaData, getFinalsCB)
+//     const winners = getWinnersCB(fifaData, getFinalsCB)
+//     return winners.map((item, index)=>`In ${Year[index]}, ${item} won the world cup!`)
+// //         return `In ${collect.Year}, ${collect.Country} won the world cup!`
+//     }
+function getWinnersByYear(fifaData, getFinals){
+
+    const data = getFinals(fifaData)
+    return data.map((item) =>{
+        if (item['Home Team Goals'] > item['Away Team Goals']){
+       return `In ${item.Year}, ${item['Home Team Name']} won the world cup!` }
+       else { 
+        return `In ${item.Year}, ${item['Away Team Name']} won the world cup!`
+    
+        }
+    });
 }
-
-
+console.log(getWinnersByYear(fifaData, getFinals))
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 6: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
 Use the higher order function `getAverageGoals` to do the following: 
