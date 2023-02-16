@@ -8,15 +8,26 @@ Practice accessing data by console.log-ing the following pieces of data note.
 💡 HINT: You may want to filter the data first 😉*/
 
 //(a) Home Team name for 2014 world cup final
-
+function returnMyData(fifaData){
+    const data2014 = fifaData.filter((element) =>{ return element.Year === 2014 && element.Stage === "Final"})
+    return {homeName : data2014[0]["Home Team Name"],
+            awayName: data2014[0]["Away Team Name"],
+        homeGoals: data2014[0]["Home Team Goals"],
+    awayGoals:data2014[0]["Away Team Goals"],
+    winner:data2014[0]["Win conditions"]
+}
+}
+//console.log(returnMyData(fifaData))
+// console.log(data2014[0]["Win conditions"]) 
+// Germany
 //(b) Away Team name for 2014 world cup final
-
+// Argentina
 //(c) Home Team goals for 2014 world cup final
-
+// 1
 //(d) Away Team goals for 2014 world cup final
-
+// 0
 //(e) Winner of 2014 world cup final */
-
+// Germany win after extra time
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 2: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 
 Use getFinals to do the following:
@@ -26,8 +37,9 @@ Use getFinals to do the following:
 💡 HINT - you should be looking at the stage key inside of the objects
 */
 
-function getFinals(/* code here */) {
-    /* code here */
+function getFinals(arr) {
+   const finals = arr.filter((point)=> {return point.Stage === "Final"})
+   return finals 
  }
 
 
@@ -38,11 +50,13 @@ Use the higher-order function called getYears to do the following:
 2. Receive a callback function as the second parameter that will take getFinals from task 2 as an argument
 3. Return an array called years containing all of the years in the getFinals data set*/
 
-function getYears(/* code here */) {
-    /* code here */
+function getYears(arr, callBack) {
+   const thestuff = callBack(arr);
+   const years = thestuff.map((point)=>{return point.Year});
+        return years
 }
 
-
+//console.log(getYears (fifaData, getFinals))
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 4: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
 Use the higher-order function getWinners to do the following:  
